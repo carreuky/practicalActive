@@ -6,4 +6,19 @@ class ApplicationController < Sinatra::Base
     { message: "Good luck with your project!" }.to_json
   end
 
+  get "/basketballs" do
+    baskets=Basketball.order('player DESC')
+    baskets.to_json
+  end
+
+  get "/basketball/:id" do
+    basket=Basketball.find(params[:id])
+    basket.to_json
+  end
+
+  get "/basketballs/:player" do
+    baskets=Basketball.find_by_player('Kyle Lowry')
+    baskets.to_json
+  end
+
 end
